@@ -1,0 +1,116 @@
+---HTTP call | Network call: - How we consume Apis or backend services.
+
+--->fetch():-inbuild method of javascript and it returns promise
+  eg:-
+ let Api ="url";
+  fetch(Api)
+ 
+.then(res=>json.res())
+.then(data=>console.log(data))
+.catch(err=>console.log(err))
+
+
+---> Axios 3rd part module(packange)
+
+npm install axios --save
+
+import axios from 'axios';
+
+let Api ="url";
+ axios.get(Api)
+.then(res=>console.log(res.data))
+.catch(err=>console.log(err))
+
+==>fake Api 
+
+ https://jsonplaceholder.typicode.com/posts
+ https://jsonplaceholder.typicode.com/users
+
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+
+fetch methdos
+import React, { useState } from 'react'
+const Fetchmethod = () => {
+    const[post,setPost]=useState([])
+    const fetchDataclick=()=>{
+        const Api="https://jsonplaceholder.typicode.com/posts"
+        fetch(Api)
+        .then(res=>res.json())
+        .then(res=>{
+            console.log(res);
+            setPost(res)
+        })
+        .then(err=>console.log(err))
+    }
+  return (
+      <>
+      <h1>Fetchmethod</h1>
+    <button onClick={fetchDataclick}>FetchApi</button>
+    <div>
+        {
+            post.map((data,ind)=>
+            <div key={ind}>
+                <h3>{data.id}</h3>
+                <p>{data.body}</p>
+                <hr />
+            </div>
+            )
+        }
+    </div>
+    </>
+  )
+}
+
+export default Fetchmethod
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+Axios methods
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+
+const AxiosMethods = () => {
+    const[user,setUser]=useState([])
+    useEffect(()=>{
+        const Api="https://jsonplaceholder.typicode.com/users"
+        axios.get(Api)
+        .then(res=>{
+            console.log(res.data)
+            setUser(res.data)
+        }).then(err=>console.log(err))
+    },[])
+  return (
+    <div>
+        <h1>Axios Methods</h1>
+        {
+            <table className='table'>
+                <thead>
+                    <tr>
+                        <th>Sr.no</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Websiet</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        user.map((data,ind)=>
+                        <tr>
+                            <td>{ind+1}</td>
+                            <td>{data.name}</td>
+                            <td>{data.email}</td>
+                            <td>{data.website}</td>
+                        </tr>
+                        )
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+  )
+}
+
+export default AxiosMethods
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+
