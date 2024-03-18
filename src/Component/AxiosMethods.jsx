@@ -28,13 +28,18 @@ const AxiosMethods = () => {
                 <tbody>
                     {
                         user.map((data,ind)=>
-                        <tr key={ind}> 
-                            <td>{ind+1}</td>
-                            <td>{data.name}</td>
-                            <td>{data.email}</td>
-                            <td>{data.website}</td>
-                            <td>{data.address.city}</td>
-                        </tr>
+
+<tr key={ind}> 
+    <td>{ind+1}</td>
+    
+    <td>{data.name}</td>                           
+
+   <td>{data.email}</td>                          
+
+   <td>{data.website}</td>                                
+
+   <td>{data.address.city}</td>
+ </tr>
                         )
                     }
                 </tbody>
